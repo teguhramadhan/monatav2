@@ -26,8 +26,8 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('mancore.index')" :active="request()->routeIs('mancore.*')">
-                        Mancore
+                    <x-nav-link :href="route('mancore.index')" :active="request()->routeIs('mancore')">
+                        {{ __('Mancore') }}
                     </x-nav-link>
 
                 </div>
@@ -89,8 +89,8 @@
             <x-responsive-nav-link :href="route('occupation')" :active="request()->routeIs('occupation')">
                 {{ __('Occupation') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('mancore')" :active="request()->routeIs('mancore')">
-                {{ __('Mancore') }}
+            <x-responsive-nav-link :href="route('mancore.index')" :active="request()->routeIs('mancore')">
+                Mancore
             </x-responsive-nav-link>
         </div>
 
