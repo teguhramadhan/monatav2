@@ -12,7 +12,7 @@ class MancoreFtmController extends Controller
      */
     public function index()
     {
-        $mancores = MancoreFtm::all(); // Ambil data dari database
+        $mancores = MancoreFtm::paginate(5); // Ganti angka 10 sesuai kebutuhan
         return view('mancore.index', compact('mancores')); // Kirim data ke view
     }
 

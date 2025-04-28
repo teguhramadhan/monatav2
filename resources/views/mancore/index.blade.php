@@ -36,6 +36,10 @@
                     </tbody>
                 </table>
             </div>
+            <!-- Pagination -->
+            <div class="mt-4">
+                {{ $mancores->links() }} <!-- Link pagination -->
+            </div>
         </div>
     </div>
 
