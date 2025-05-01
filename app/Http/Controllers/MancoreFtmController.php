@@ -10,10 +10,29 @@ class MancoreFtmController extends Controller
     /**
      * Menampilkan semua data Mancore FTM.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $mancores = MancoreFtm::paginate(5); // Ganti angka 10 sesuai kebutuhan
-        return view('mancore.index', compact('mancores')); // Kirim data ke view
+        $query = MancoreFtm::query();
+
+        if ($request->filled('sto')) {
+            $query->where('sto', $request->sto);
+        }
+
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('gpon_slot_port', 'like', "%{$request->search}%")
+                    ->orWhere('gpon_ip', 'like', "%{$request->search}%")
+                    ->orWhere('eakses', 'like', "%{$request->search}%")
+                    ->orWhere('oakses', 'like', "%{$request->search}%")
+                    ->orWhere('odc', 'like', "%{$request->search}%");
+            });
+        }
+
+        $mancores = $query->paginate(10)->appends($request->all());
+
+        $listSto = MancoreFtm::select('sto')->distinct()->pluck('sto');
+
+        return view('mancore.index', compact('mancores', 'listSto'));
     }
 
     /**
